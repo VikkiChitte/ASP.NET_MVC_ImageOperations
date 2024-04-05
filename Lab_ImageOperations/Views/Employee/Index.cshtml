@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Lab_ImageOperations.Models.EmployeeViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Employee List</h1>
+
+<p>
+    <a asp-action="Create" class = "btn btn-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>         
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeId)
+            </td>
+            <td>
+                    <img src ="~/images/@item.ImagePath" height="40" width="40" />@item.Name
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+          
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeId }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.EmployeeId  }, new{onclick="return confirm('Are you sure to delete?')"})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
